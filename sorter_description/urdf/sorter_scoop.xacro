@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- right_motor -->
+	<link name="sorter_scoop">
+		<inertial>
+			<origin
+			xyz="0.078931 1.2977E-06 0.14697"
+			rpy="0 0 0" />
+			<mass
+			value="0.15664" />
+			<inertia
+			ixx="0.0030098"
+			ixy="3.2581E-09"
+			ixz="-3.5132E-05"
+			iyy="0.0015134"
+			iyz="5.1464E-08"
+			izz="0.0016037" />
+    		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+			        <mesh filename="package://sorter_description/meshes/sorter_scoop.STL" />
+			</geometry>
+      			<material name="OrangeScoop"/>
+		</visual>	
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://sorter_description/meshes/sorter_scoop.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="sorter_scoop">
+	    	<material>Gazebo/Orange</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+	<joint name="scoop2base" type="revolute">
+		<origin
+		xyz="-0.13014 0.07 0"
+		rpy="1.5708 0 1.5708" />
+		<parent
+		link="sorter_base" />
+		<child
+		link="sorter_scoop" />
+		<axis
+		xyz="0 1 0" />
+		<limit
+		lower="0"
+		upper="1.5708"
+		effort="0"
+		velocity="0" />
+	</joint>
+</robot>

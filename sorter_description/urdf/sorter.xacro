@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- Matherials -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_materials.xacro" />
+	<!-- abot_base -->
+	<link name="sorter_base">
+		<inertial>
+      			<origin
+					xyz="0.0068695 0.60786 -8.8981E-05"
+					rpy="0 0 0" />
+      			<mass
+        			value="1.4064" />
+		      	<inertia
+					ixx="0.016166"
+					ixy="-2.2307E-05"
+					ixz="-3.9376E-09"
+					iyy="0.028186"
+					iyz="7.2819E-07"
+					izz="0.015275" />
+    		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+			        <mesh filename="package://sorter_description/meshes/sorter_base.STL" />
+			</geometry>
+      			<material name="BlackBase"/>
+		</visual>	
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://sorter_description/meshes/sorter_base.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="sorter_base">
+	    	<material>Gazebo/DarkGrey</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+	<!-- base_link -->
+	<link name="base_link">
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<sphere radius="0.001" />
+			</geometry>
+		</visual>
+	</link>
+	<joint name="base_link_to_sorter_base" type="fixed">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="sorter_base" />
+	</joint>	
+	<!-- Motors -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_left_motor.xacro" />
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_right_motor.xacro" />
+	<!-- Wheels -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_left_wheel.xacro" />
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_right_wheel.xacro" />
+	<!-- Covers -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_left_cover.xacro" />
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_right_cover.xacro" />
+	<!-- Caster wheels -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_front_caster_wheel.xacro" />
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_back_caster_wheel.xacro" />
+	<!-- Scoop -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_scoop.xacro" />
+	<!-- Decoration -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_bolts.xacro" />
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_leds.xacro" />
+		
+	<!-- Sensors -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter_camera.xacro" />
+	
+	
+	<!-- camera -->
+	<gazebo reference="sorter_camera">
+		<sensor type="camera" name="camera1">
+			<visualize>true</visualize>
+			<update_rate>10.0</update_rate>
+			<camera name="head">
+				<horizontal_fov>1.4</horizontal_fov>
+				<image>
+					<width>600</width>
+					<height>400</height>
+					<format>R8G8B8</format>
+				</image>
+				<clip>
+					<near>0.01</near>
+					<far>0.5</far>
+				</clip>
+			</camera>
+			<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+				<alwaysOn>true</alwaysOn>
+				<updateRate>0.0</updateRate>
+				<cameraName>sorter/camera1</cameraName>
+				<imageTopicName>image_raw</imageTopicName>
+				<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+				<frameName>sorter_camera</frameName>
+				<hackBaseline>0.07</hackBaseline>
+				<distortionK1>0.0</distortionK1>
+				<distortionK2>0.0</distortionK2>
+				<distortionK3>0.0</distortionK3>
+				<distortionT1>0.0</distortionT1>
+				<distortionT2>0.0</distortionT2>
+			</plugin>
+		</sensor>
+	</gazebo>
+</robot>

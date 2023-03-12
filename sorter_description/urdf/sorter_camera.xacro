@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+  	<!-- Camera -->	
+  	<xacro:property name="camera_size" value="0.05" /> <!-- Size of square 'camera' box -->
+	<link name="sorter_camera">
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+			<box size="${camera_size/5} ${camera_size} ${camera_size/5}"/>
+			</geometry>
+		</collision>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<geometry>
+			<box size="${camera_size/5} ${camera_size} ${camera_size/5}"/>
+			</geometry>
+			<material name="Blue"/>
+		</visual>
+		<inertial>
+			<mass value="0" />
+			<origin xyz="0 0 0" rpy="0 0 0"/>
+			<inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+		</inertial>
+	</link>
+	<gazebo reference="sorter_camera">
+	    	<material>Gazebo/BlueTransparent</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+  	<joint name="camera2camera_rotate" type="fixed">
+		<origin xyz="0 0.06 0.185" rpy="1.57 -1.57 0"/>
+		<parent link="sorter_base"/>
+		<child link="sorter_camera"/>
+	</joint>
+</robot>

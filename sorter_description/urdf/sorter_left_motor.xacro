@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- left_motor -->
+	<link name="sorter_left_motor">
+		<inertial>
+      			<origin
+			xyz="-1.7924E-16 -6.5919E-17 0.049831"
+			rpy="0 0 0" />
+			<mass
+			value="0.10528" />
+			<inertia
+			ixx="0.00010048"
+			ixy="1.3044E-35"
+			ixz="2.6532E-19"
+			iyy="0.00010048"
+			iyz="-3.3687E-21"
+			izz="2.4448E-05" />
+    		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+			        <mesh filename="package://sorter_description/meshes/sorter_left_motor.STL" />
+			</geometry>
+      			<material name="Blue"/>
+		</visual>	
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://sorter_description/meshes/sorter_left_motor.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="sorter_left_motor">
+	    	<material>Gazebo/Blue</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+	<joint name="left_motor2base" type="fixed">
+		<origin
+		xyz="0.04 0.028 0"
+		rpy="0 -1.5708 3.1416" />
+		<parent
+		link="sorter_base" />
+		<child
+		link="sorter_left_motor" />
+		<axis
+		xyz="0 0 1" />
+	</joint>
+</robot>

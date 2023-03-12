@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- right_motor -->
+	<link name="sorter_leds">
+		<inertial>
+			<origin
+			xyz="0 0 0"
+			rpy="0 0 0" />
+			<mass
+			value="0" />
+			<inertia
+			ixx="0"
+			ixy="0"
+			ixz="0"
+			iyy="0"
+			iyz="0"
+			izz="0" />
+    		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+			        <mesh filename="package://sorter_description/meshes/sorter_leds.STL" />
+			</geometry>
+      			<material name="BlueLed"/>
+		</visual>	
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://sorter_description/meshes/sorter_leds.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="sorter_leds">
+	    	<material>Gazebo/BlueTransparent</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+	<joint name="leds2base" type="fixed">
+		<origin
+		xyz="0.03 0.118 0.133"
+		rpy="0 0 1.5708" />
+		<parent
+		link="sorter_base" />
+		<child
+		link="sorter_leds" />
+		<axis
+		xyz="1 0 0" />
+	</joint>
+</robot>

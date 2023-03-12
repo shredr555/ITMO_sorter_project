@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- right_motor -->
+	<link name="sorter_front_caster_wheel">
+		<inertial>
+			<origin
+			xyz="5.18682319317065E-16 -5.20417042793042E-18 0.015"
+			rpy="0 0 0" />
+			<mass
+			value="0.038170350741116" />
+			<inertia
+			ixx="3.43533156670044E-06"
+			ixy="0"
+			ixz="5.12496038246219E-45"
+			iyy="3.43533156670044E-06"
+			iyz="-1.63998732234046E-38"
+			izz="3.43533156670044E-06" />
+    		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+			        <mesh filename="package://sorter_description/meshes/sorter_front_caster_wheel.STL" />
+			</geometry>
+      			<material name="Silver"/>
+		</visual>	
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://sorter_description/meshes/sorter_front_caster_wheel.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="sorter_front_caster_wheel">
+	    	<material>Gazebo/GreyGradientSky</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+	<joint name="front_caster_wheel2base" type="continuous">
+		<origin
+		xyz="0 0.009 0.12444"
+		rpy="0 0 0" />
+		<parent
+		link="sorter_base" />
+		<child
+		link="sorter_front_caster_wheel" />
+		<axis
+		xyz="0 0 1" />
+	</joint>
+</robot>

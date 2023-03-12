@@ -1,0 +1,8 @@
+controller_joint_names: [
+  '', 
+  'left_wheel2motor', 
+  'right_wheel2motor', 
+  'front_caster_wheel2base', 
+  'back_caster_wheel2base', 
+  'scoop2base', 
+]

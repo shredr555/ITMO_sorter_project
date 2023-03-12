@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- right_motor -->
+	<link name="sorter_right_cover">
+		<inertial>
+			<origin
+			xyz="0.00194719134720706 -6.55725473919233E-16 -2.28983498828939E-16"
+			rpy="0 0 0" />
+			<mass
+			value="0.0431207702228541" />
+			<inertia
+			ixx="9.37344452981365E-06"
+			ixy="-1.57117042541872E-20"
+			ixz="-5.56763650351688E-21"
+			iyy="4.74203410091467E-06"
+			iyz="1.05879118406788E-22"
+			izz="4.74203410091467E-06" />
+    		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+			        <mesh filename="package://sorter_description/meshes/sorter_right_cover.STL" />
+			</geometry>
+      			<material name="Silver"/>
+		</visual>	
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://sorter_description/meshes/sorter_right_cover.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="sorter_right_cover">
+	    	<material>PR2/Grey1</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+	<joint name="right_cover2wheel" type="fixed">
+		<origin
+		xyz="0.136 0 0"
+		rpy="0 0 0" />
+		<parent
+		link="sorter_right_wheel" />
+		<child
+		link="sorter_right_cover" />
+		<axis
+		xyz="1 0 0" />
+	</joint>
+
+</robot>

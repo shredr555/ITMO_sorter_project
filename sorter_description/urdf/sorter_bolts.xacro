@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="sorter"
+	xmlns:xacro="http://www.ros.org/wiki/xacro">
+	<!-- right_motor -->
+	<link name="sorter_bolts">
+		<inertial>
+			<origin
+			xyz="-0.0053664 -0.1195 -0.11641"
+			rpy="0 0 0" />
+			<mass
+			value="0.015284" />
+			<inertia
+			ixx="8.0348E-07"
+			ixy="-5.9192E-22"
+			ixz="-6.1236E-23"
+			iyy="5.1585E-07"
+			iyz="1.4823E-21"
+			izz="5.1585E-07" />
+    		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+			        <mesh filename="package://sorter_description/meshes/sorter_bolts.STL" />
+			</geometry>
+      			<material name="Silver"/>
+		</visual>	
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="package://sorter_description/meshes/sorter_bolts.STL" />
+			</geometry>
+		</collision>
+	</link>
+	<gazebo reference="sorter_bolts">
+	    	<material>PR2/Grey0</material>
+	    	<selfCollide>True</selfCollide>
+  	</gazebo>
+	<joint name="bolts2base" type="fixed">
+		<origin
+		xyz="0.094041 0.08 0.16282"
+		rpy="0.57871 0 -1.5708" />
+		<parent
+		link="sorter_base" />
+		<child
+		link="sorter_bolts" />
+		<axis
+		xyz="0 0 0" />
+	</joint>
+</robot>
