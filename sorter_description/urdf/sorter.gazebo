@@ -7,4 +7,54 @@
         </plugin>
     </gazebo>
 
+	<gazebo>
+		<plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+			<alwaysOn>true</alwaysOn>
+			<updateRate>100</updateRate>
+			<leftJoint>left_wheel2motor</leftJoint>
+			<rightJoint>right_wheel2motor</rightJoint>
+			<wheelSeparation>0.292</wheelSeparation>
+			<wheelDiameter>0.07</wheelDiameter>
+			<torque>20</torque>
+			<commandTopic>sorter/cmd_vel</commandTopic>
+			<odometryTopic>sorter/odom_diffdrive</odometryTopic>
+			<odometryFrame>odom</odometryFrame>
+			<robotBaseFrame>sorter_base</robotBaseFrame>
+		</plugin>
+	</gazebo>
+
+    <!-- camera -->
+    <gazebo reference="sorter_camera">
+		<sensor type="camera" name="camera1">
+			<visualize>true</visualize>
+			<update_rate>10.0</update_rate>
+			<camera name="head">
+				<horizontal_fov>1.4</horizontal_fov>
+				<image>
+					<width>600</width>
+					<height>400</height>
+					<format>R8G8B8</format>
+				</image>
+				<clip>
+					<near>0.01</near>
+					<far>1.5</far>
+				</clip>
+			</camera>
+			<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+				<alwaysOn>true</alwaysOn>
+				<updateRate>0.0</updateRate>
+				<cameraName>sorter/camera1</cameraName>
+				<imageTopicName>image_raw</imageTopicName>
+				<cameraInfoTopicName>camera_info</cameraInfoTopicName>
+				<frameName>sorter_camera</frameName>
+				<hackBaseline>0.07</hackBaseline>
+				<distortionK1>0.0</distortionK1>
+				<distortionK2>0.0</distortionK2>
+				<distortionK3>0.0</distortionK3>
+				<distortionT1>0.0</distortionT1>
+				<distortionT2>0.0</distortionT2>
+			</plugin>
+		</sensor>
+	</gazebo>
+
 </robot>

@@ -1,7 +1,6 @@
 <launch>
 	<!-- Args -->
 	<arg name="gui" default="true" />
-	<arg name="rvizconfig" default="$(find sorter_description)/rviz/sorter_model.rviz" />
 	<arg name="model" default="$(find sorter_description)/urdf/sorter.xacro" />
 	<!-- Params -->
 	<param name="use_gui" value="$(arg gui)" />

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="sorter"
 	xmlns:xacro="http://www.ros.org/wiki/xacro">
-	<!-- Matherials -->
+	<!-- Materials -->
 	<xacro:include filename="$(find sorter_description)/urdf/sorter_materials.xacro" />
 	<!-- abot_base -->
 	<link name="sorter_base">
@@ -51,6 +51,9 @@
 		<parent link="base_link" />
 		<child link="sorter_base" />
 	</joint>	
+
+	<!-- gazebo plugins -->
+	<xacro:include filename="$(find sorter_description)/urdf/sorter.gazebo" />
 	<!-- Motors -->
 	<xacro:include filename="$(find sorter_description)/urdf/sorter_left_motor.xacro" />
 	<xacro:include filename="$(find sorter_description)/urdf/sorter_right_motor.xacro" />
@@ -72,38 +75,4 @@
 	<!-- Sensors -->
 	<xacro:include filename="$(find sorter_description)/urdf/sorter_camera.xacro" />
 	
-	
-	<!-- camera -->
-	<gazebo reference="sorter_camera">
-		<sensor type="camera" name="camera1">
-			<visualize>true</visualize>
-			<update_rate>10.0</update_rate>
-			<camera name="head">
-				<horizontal_fov>1.4</horizontal_fov>
-				<image>
-					<width>600</width>
-					<height>400</height>
-					<format>R8G8B8</format>
-				</image>
-				<clip>
-					<near>0.01</near>
-					<far>0.5</far>
-				</clip>
-			</camera>
-			<plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-				<alwaysOn>true</alwaysOn>
-				<updateRate>0.0</updateRate>
-				<cameraName>sorter/camera1</cameraName>
-				<imageTopicName>image_raw</imageTopicName>
-				<cameraInfoTopicName>camera_info</cameraInfoTopicName>
-				<frameName>sorter_camera</frameName>
-				<hackBaseline>0.07</hackBaseline>
-				<distortionK1>0.0</distortionK1>
-				<distortionK2>0.0</distortionK2>
-				<distortionK3>0.0</distortionK3>
-				<distortionT1>0.0</distortionT1>
-				<distortionT2>0.0</distortionT2>
-			</plugin>
-		</sensor>
-	</gazebo>
 </robot>

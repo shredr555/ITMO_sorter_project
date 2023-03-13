@@ -46,4 +46,16 @@
 		<axis
 		xyz="0 0 1" />
 	</joint>
+
+	<transmission name="left_wheel_trans">
+	<type>transmission_interface/SimpleTransmission</type>
+	<joint name="left_wheel2motor">
+		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+	</joint>
+	<actuator name="left_wheel_Motor">
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+		<mechanicalReduction>10</mechanicalReduction>
+	</actuator>
+	</transmission>
+
 </robot>
