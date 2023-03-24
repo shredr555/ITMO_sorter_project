@@ -1,30 +1,37 @@
-<h1 align="center">title name</h1>
-<h3 align="center">A passionate frontend developer from India</h3>
+# __ROS line follower__
 
-- 🔭 I’m currently working on [project name 1](project link 1)
+В данном проекте, мы реализовали четырех колесного робота с камерой, для отслеживания линии.
 
-- 🌱 I’m currently learning **framework**
 
-- 👯 I’m looking to collaborate on [project name 2](project link 2)
+## __Подготовка__
+____
+### __Необходимое программное обеспечение__
 
-- 🤝 I’m looking for help with [project name 3](project link 3)
+- ROS
+- python
 
-- 👨‍💻 All of my projects are available at [portfolio link](portfolio link)
+### __Установка__
 
-- 📝 I regularly write articles on [blog link](blog link)
+Скопируйте наш репозиторий в свой `_catkin_ws/src_`
 
-- 💬 Ask me about **react, vue...**
+```
+git clone https://github.com/shredr555/ITMO_sorter_project.git
+```
 
-- 📫 How to reach me **example@gmail.com**
+## __Запуск__
+____
 
-- 📄 Know about my experiences [resume link](resume link)
+Для запуска симуляции перейдите в `_catkin_ws/src_` и введите следующее
 
-- ⚡ Fun fact **I think i'm funny**
+```
+cd sorter_description/launch
+roslaunch gazebo.launch
+```
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-</p>
+Для запуска алгоритма следования по линии также перейдите в `_catkin_ws/src_` и введите следующее
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left"> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://opencv.org/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/opencv/opencv-icon.svg" alt="opencv" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p>
+```
+rosrun sorter_control simple_move.py
+```
+
 
