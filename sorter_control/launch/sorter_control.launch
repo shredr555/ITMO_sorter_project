@@ -10,7 +10,8 @@
     output="screen" ns="/sorter_description"
     args="joint_state_controller
       left_wheel2motor
-      right_wheel2motor"
+      right_wheel2motor
+      scoop2base"
   />
 
 

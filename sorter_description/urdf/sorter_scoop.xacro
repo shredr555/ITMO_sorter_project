@@ -51,4 +51,16 @@
 		effort="0"
 		velocity="0" />
 	</joint>
+
+	<transmission name="scoop_trans">
+	<type>transmission_interface/SimpleTransmission</type>
+	<joint name="scoop2base">
+		<hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+	</joint>
+	<actuator name="scoop_Motor">
+		<hardwareInterface>EffortJointInterface</hardwareInterface>
+		<mechanicalReduction>10</mechanicalReduction>
+	</actuator>
+	</transmission>
+
 </robot>
