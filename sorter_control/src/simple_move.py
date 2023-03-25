@@ -25,7 +25,7 @@ class Follower:
     
     h, w, d = image.shape
     search_top = 3*h/4
-    search_bot = 3*h/4 + 100
+    search_bot = 3*h/4 + 150
     mask[0:search_top, 0:w] = 0
     mask[search_bot:h, 0:w] = 0
     M = cv2.moments(mask)
@@ -33,15 +33,15 @@ class Follower:
       cx = int(M['m10']/M['m00'])
       cy = int(M['m01']/M['m00'])
       
-      err = cx - w/2.5
-      self.twist.linear.x = -1
+      err = cx - w/4
+      self.twist.linear.x = -0.8
       self.twist.angular.z = float(err) / 100
       self.cmd_vel_pub.publish(self.twist)
-    else:
-      self.twist.linear.x = 1
-      self.cmd_vel_pub.publish(self.twist)
+    # else:
+    #   self.twist.linear.x = 0.3
+    #   self.cmd_vel_pub.publish(self.twist)
     
-    cv2.circle(image, (cx, cy), 20, (0,0,255), -1)
+    # cv2.circle(image, (cx, cy), 20, (0,0,255), -1)
     cv2.imshow("mask",mask)
     cv2.imshow("output", image)
     cv2.waitKey(3)
